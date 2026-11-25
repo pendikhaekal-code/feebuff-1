@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TestProject Haekal — Manajemen Tugas Mahasiswa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark" aria-hidden="true">TH</span>
+        <div class="brand-text">
+          <p class="brand-name">TestProject Haekal</p>
+          <p class="brand-sub">Manajemen Tugas</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <button type="button" class="nav-item is-active" data-view="tasks" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 5h16M4 12h16M4 19h10" />
+          </svg>
+          <span>Tugas</span>
+        </button>
+        <button type="button" class="nav-item" data-view="calendar">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+            <path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" />
+          </svg>
+          <span>Kalender</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-progress" id="progress" hidden>
+          <p class="progress-label">Progres tugas</p>
+          <p class="progress-text" id="progressText">0 dari 0 selesai</p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <p class="storage-note">Data tersimpan di browser ini (LocalStorage).</p>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-text">
+          <p class="eyebrow" id="todayLabel">—</p>
+          <h1 id="pageTitle">Dashboard Tugas</h1>
+        </div>
+        <p class="topbar-note">Kelola deadline, pantau progres, tetap teratur.</p>
+      </header>
+
+      <!-- ================= TUGAS ================= -->
+      <section class="view" id="viewTasks" aria-labelledby="pageTitle">
+        <div class="stats-grid">
+          <article class="stat-card">
+            <p class="stat-label">Total Tugas</p>
+            <p class="stat-value" id="statTotal">0</p>
+            <p class="stat-hint">Seluruh tugas tercatat</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Belum Selesai</p>
+            <p class="stat-value" id="statActive">0</p>
+            <p class="stat-hint">Masih perlu dikerjakan</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Selesai</p>
+            <p class="stat-value" id="statDone">0</p>
+            <p class="stat-hint">Sudah ditandai selesai</p>
+          </article>
+          <article class="stat-card stat-card--alert">
+            <p class="stat-label">Terlambat</p>
+            <p class="stat-value" id="statOverdue">0</p>
+            <p class="stat-hint">Lewat deadline, belum selesai</p>
+          </article>
+        </div>
+
+        <section class="panel" aria-labelledby="formTitle">
+          <div class="panel-head">
+            <h2 id="formTitle">Tambah Tugas</h2>
+            <p class="panel-sub">Deadline wajib diisi dan tidak boleh tanggal yang sudah lewat.</p>
+          </div>
+
+          <form class="task-form" id="taskForm" autocomplete="off" novalidate>
+            <div class="field field-full">
+              <label class="field-label" for="taskInput">Nama atau isi tugas</label>
+              <input
+                type="text"
+                id="taskInput"
+                class="field-input"
+                placeholder="Contoh: Laporan praktikum Fisika Dasar"
+                maxlength="120"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="categorySelect">Kategori</label>
+              <div class="select-wrap">
+                <select id="categorySelect" class="field-select">
+                  <option value="Praktikum">Praktikum</option>
+                  <option value="Teori" selected>Teori</option>
+                  <option value="Ujian">Ujian</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="prioritySelect">Prioritas</label>
+              <div class="select-wrap">
+                <select id="prioritySelect" class="field-select">
+                  <option value="Rendah">Rendah</option>
+                  <option value="Sedang" selected>Sedang</option>
+                  <option value="Tinggi">Tinggi</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field field-date">
+              <label class="field-label" for="deadlineInput">Deadline</label>
+              <input
+                type="date"
+                id="deadlineInput"
+                class="field-input"
+                required
+                aria-describedby="deadlineError"
+              />
+              <p class="field-error" id="deadlineError" role="alert" hidden>
+                Deadline wajib diisi dengan tanggal yang valid.
+              </p>
+            </div>
+
+            <div class="field field-submit">
+              <button type="submit" class="btn-primary">Tambah Tugas</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="daftarTugasTitle">
+          <div class="panel-head panel-head--row">
+            <div>
+              <h2 id="daftarTugasTitle">Daftar Tugas</h2>
+              <p class="panel-sub" id="taskCount">0 tugas</p>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <div class="toolbar-row">
+              <label class="sr-only" for="searchInput">Cari tugas</label>
+              <input
+                type="search"
+                id="searchInput"
+                class="search-input"
+                placeholder="Cari nama atau isi tugas..."
+              />
+            </div>
+
+            <div class="toolbar-row toolbar-filters">
+              <div class="segmented" role="group" aria-label="Filter status tugas">
+                <button type="button" class="segment is-active" data-status-filter="all" aria-pressed="true">
+                  Semua
+                </button>
+                <button type="button" class="segment" data-status-filter="active" aria-pressed="false">
+                  Belum Selesai
+                </button>
+                <button type="button" class="segment" data-status-filter="done" aria-pressed="false">
+                  Selesai
+                </button>
+              </div>
+
+              <div class="filter-selects">
+                <div class="select-wrap">
+                  <label class="sr-only" for="categoryFilter">Filter kategori</label>
+                  <select id="categoryFilter" class="field-select">
+                    <option value="all">Semua kategori</option>
+                    <option value="Praktikum">Praktikum</option>
+                    <option value="Teori">Teori</option>
+                    <option value="Ujian">Ujian</option>
+                  </select>
+                </div>
+                <div class="select-wrap">
+                  <label class="sr-only" for="deadlineFilter">Filter status deadline</label>
+                  <select id="deadlineFilter" class="field-select">
+                    <option value="all">Semua deadline</option>
+                    <option value="today">Hari ini</option>
+                    <option value="soon">Segera (≤ 3 hari)</option>
+                    <option value="overdue">Terlambat</option>
+                    <option value="upcoming">Mendatang</option>
+                    <option value="none">Tanpa deadline</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="empty-state" id="emptyState">
+            <p class="empty-title" id="emptyTitle">Belum ada tugas</p>
+            <p class="empty-desc" id="emptyDesc">Tambahkan tugas pertamamu lewat form di atas.</p>
+          </div>
+
+          <ul class="task-list" id="taskList" aria-live="polite"></ul>
+        </section>
+      </section>
+
+      <!-- ================= KALENDER ================= -->
+      <section class="view" id="viewCalendar" aria-labelledby="pageTitle" hidden>
+        <div class="calendar-layout">
+          <section class="panel calendar-panel" aria-labelledby="calendarTitle">
+            <div class="calendar-head">
+              <div class="calendar-heading">
+                <h2 id="calendarTitle">—</h2>
+                <p class="panel-sub" id="calendarSubtitle"></p>
+              </div>
+
+              <div class="calendar-controls">
+                <div class="segmented" role="group" aria-label="Tampilan kalender">
+                  <button type="button" class="segment is-active" data-calendar-mode="month" aria-pressed="true">
+                    Bulan
+                  </button>
+                  <button type="button" class="segment" data-calendar-mode="week" aria-pressed="false">
+                    Minggu
+                  </button>
+                </div>
+                <div class="period-nav">
+                  <button type="button" class="icon-btn" id="prevPeriod" aria-label="Periode sebelumnya">
+                    ‹
+                  </button>
+                  <button type="button" class="btn-ghost" id="todayBtn">Hari ini</button>
+                  <button type="button" class="icon-btn" id="nextPeriod" aria-label="Periode berikutnya">
+                    ›
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="calendar-weekdays" id="calendarWeekdays"></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </section>
+
+          <aside class="panel calendar-detail" id="calendarDetail" aria-live="polite"></aside>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

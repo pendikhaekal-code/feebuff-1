@@ -1,0 +1,641 @@
+:root {
+  --bg: #f4f5fb;
+  --surface: #ffffff;
+  --text: #1c1f2e;
+  --text-muted: #7b8194;
+  --border: #e7e9f3;
+  --accent: #5b5bd6;
+  --accent-strong: #4a4ac4;
+  --accent-soft: #eef0ff;
+  --success: #16a37a;
+  --danger: #e2506b;
+  --shadow: 0 20px 50px -22px rgba(32, 36, 74, 0.35);
+  --radius: 18px;
+  --font: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 8% -10%, #e4e6ff 0%, transparent 60%),
+    radial-gradient(700px 420px at 100% 0%, #ffe9ef 0%, transparent 55%),
+    var(--bg);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app {
+  width: 100%;
+  max-width: 680px;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 26px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #6a6af0, #4a4ac4);
+  box-shadow: 0 12px 24px -10px rgba(90, 90, 214, 0.7);
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: 2px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.progress {
+  min-width: 180px;
+  text-align: right;
+}
+
+.progress-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  margin-top: 7px;
+  height: 8px;
+  border-radius: 99px;
+  background: #e6e8f6;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5b5bd6, #8a7bf5);
+  transition: width 0.35s ease;
+}
+
+/* ---------- Form ---------- */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-main {
+  display: flex;
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  outline: none;
+}
+
+.form-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 12px 6px 2px;
+  border-top: 1px solid var(--border);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+.field-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field-select {
+  width: 100%;
+  padding: 10px 34px 10px 12px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  background: #f7f8fd;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-select:hover {
+  border-color: #d3d6ea;
+}
+
+.field-select:focus-visible {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.18);
+}
+
+/* Input tanggal deadline: gaya sejalan dengan select */
+.field-input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  background: #f7f8fd;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input:hover {
+  border-color: #d3d6ea;
+}
+
+.field-input:focus-visible {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.18);
+}
+
+.field-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.field-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Pesan error field deadline */
+.field-error {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* Panah kustom pada select */
+.select-wrap {
+  position: relative;
+  display: flex;
+}
+
+.select-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  width: 7px;
+  height: 7px;
+  margin-top: -6px;
+  border: solid var(--text-muted);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.form-options .btn-add {
+  flex: 0 0 auto;
+  padding: 11px 20px;
+  align-self: flex-end;
+}
+
+.task-input::placeholder {
+  color: #a4a9bb;
+}
+
+.task-input:focus-visible {
+  background: var(--accent-soft);
+}
+
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 20px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, #6363e8, #4a4ac4);
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 10px 20px -10px rgba(74, 74, 196, 0.9);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px -10px rgba(74, 74, 196, 0.95);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+/* ---------- Daftar tugas ---------- */
+.task-section {
+  margin-top: 30px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.task-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid #c9cde2;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px -16px rgba(32, 36, 74, 0.5);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  animation: slide-in 0.25s ease both;
+}
+
+/* Aksen warna prioritas di sisi kiri */
+.task-item.prio-rendah {
+  border-left-color: #4c9be8;
+}
+
+.task-item.prio-sedang {
+  border-left-color: #e0a326;
+}
+
+.task-item.prio-tinggi {
+  border-left-color: #e2506b;
+}
+
+.task-item:hover {
+  border-color: #d5d8ee;
+  box-shadow: 0 12px 26px -18px rgba(32, 36, 74, 0.55);
+}
+
+.task-item.done {
+  background: #fbfbfe;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-check {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.task-check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #c9cde2;
+  border-radius: 7px;
+  transition: all 0.2s ease;
+}
+
+.checkmark::after {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.18s ease;
+}
+
+.task-check input:checked + .checkmark {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.task-check input:checked + .checkmark::after {
+  transform: rotate(45deg) scale(1) translateY(-1px);
+}
+
+.task-check input:focus-visible + .checkmark {
+  outline: 3px solid rgba(91, 91, 214, 0.35);
+  outline-offset: 2px;
+}
+
+.task-text {
+  flex: 1 1 140px;
+  min-width: 0;
+  font-size: 0.94rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+/* ---------- Badge kategori & prioritas ---------- */
+.task-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  border-radius: 99px;
+  transition: opacity 0.2s ease;
+}
+
+.badge-category.cat-praktikum {
+  color: #4a4ac4;
+  background: #eef0ff;
+}
+
+.badge-category.cat-teori {
+  color: #2a7fb8;
+  background: #e8f4fd;
+}
+
+.badge-category.cat-ujian {
+  color: #b06412;
+  background: #fff2e2;
+}
+
+.badge-priority {
+  color: var(--text-muted);
+  background: #f4f5fb;
+  border: 1px solid var(--border);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-priority.prio-rendah .badge-dot {
+  background: #4c9be8;
+}
+
+.badge-priority.prio-sedang .badge-dot {
+  background: #e0a326;
+}
+
+.badge-priority.prio-tinggi .badge-dot {
+  background: #e2506b;
+}
+
+.badge-priority.prio-tinggi {
+  color: #c53a54;
+}
+
+/* ---------- Badge deadline ---------- */
+.badge-deadline {
+  color: var(--text-muted);
+  background: #f4f5fb;
+  border: 1px solid var(--border);
+}
+
+.badge-deadline::before {
+  content: "📅";
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+.badge-deadline.is-today {
+  color: #a35a00;
+  background: #fff4e5;
+  border-color: #f6ddb8;
+}
+
+.badge-deadline.is-soon {
+  color: #a35a00;
+  background: #fff8ec;
+  border-color: #f6e3c4;
+}
+
+.badge-deadline.is-overdue {
+  color: #c53a54;
+  background: #fdeef1;
+  border-color: #f5cdd6;
+}
+
+.badge-deadline.is-none {
+  color: #9aa0b4;
+  background: transparent;
+  border-style: dashed;
+}
+
+.badge-deadline.is-none::before {
+  content: "—";
+}
+
+.task-item.done .badge {
+  opacity: 0.55;
+}
+
+.task-item.done .task-text {
+  color: #9aa0b4;
+  text-decoration: line-through;
+}
+
+.btn-delete {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.95rem;
+  color: #b3b8cc;
+  background: transparent;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+  background: #fdeef1;
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  padding: 42px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px dashed #d9dcf0;
+  border-radius: var(--radius);
+}
+
+.empty-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.empty-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.empty-desc {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 560px) {
+  body {
+    padding: 24px 14px 40px;
+  }
+
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .progress {
+    width: 100%;
+    text-align: left;
+  }
+
+  .form-options {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .field {
+    flex: 1 1 auto;
+  }
+
+  .form-options .btn-add {
+    justify-content: center;
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .task-check {
+    align-items: flex-start;
+  }
+
+  .task-check .checkmark {
+    margin-top: 1px;
+  }
+}
